@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: intelligent-floor-plan-management-system
+    env: java
+    region: oregon
+    plan: free
+    buildCommand: mvn clean install
+    startCommand: java -Dserver.port=$PORT -jar target/FloorPlanManagementSystem-0.0.1-SNAPSHOT.jar
+    rootDir: backend
+    autoDeploy: true
