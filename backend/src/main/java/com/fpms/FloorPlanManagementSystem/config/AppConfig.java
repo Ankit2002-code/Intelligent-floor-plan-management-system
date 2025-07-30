@@ -13,8 +13,12 @@ public class AppConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://intelligent-floor-plan-management-s.vercel.app")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedOrigins(
+                            "https://intelligent-floor-plan-management-s.vercel.app",
+                            "https://intelligent-floor-plan-mana-git-3a5156-ankits-projects-fba292c2.vercel.app",
+                            "https://intelligent-floor-plan-management-system-dfdz-h1v3o58hn.vercel.app"
+                        )
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
             }
