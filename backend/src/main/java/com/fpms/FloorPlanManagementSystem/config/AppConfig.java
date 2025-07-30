@@ -16,7 +16,8 @@ public class AppConfig {
                         .allowedOrigins(
                             "https://intelligent-floor-plan-management-s.vercel.app",
                             "https://intelligent-floor-plan-mana-git-3a5156-ankits-projects-fba292c2.vercel.app",
-                            "https://intelligent-floor-plan-management-system-dfdz-h1v3o58hn.vercel.app"
+                            "https://intelligent-floor-plan-management-system-dfdz-h1v3o58hn.vercel.app",
+                            "https://intelligent-floor-plan-management-system-dfdz-i1wgrv6ed.vercel.app"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
