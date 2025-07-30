@@ -1,6 +1,7 @@
 # Stage 1: Build the application
-# Use a Maven image with OpenJDK 17 for building the Spring Boot application.
-FROM maven:3.8.5-openjdk-17 AS build
+# Use a Maven image with OpenJDK 21 for building the Spring Boot application,
+# to support projects compiled for Java 21.
+FROM maven:3.8.5-openjdk-21 AS build
 
 # Set the working directory inside the container for the build stage.
 WORKDIR /app
@@ -19,8 +20,9 @@ RUN mvn clean package -DskipTests
 
 # Stage 2: Create the final runtime image
 # Use a lightweight OpenJDK JRE (Java Runtime Environment) image for the final application.
-# 'eclipse-temurin:17-jre-alpine' is a good choice for a small, production-ready image.
-FROM eclipse-temurin:17-jre-alpine
+# 'eclipse-temurin:21-jre-alpine' is the corresponding JRE for Java 21,
+# and it's a good choice for a small, production-ready image.
+FROM eclipse-temurin:21-jre-alpine
 
 # Set the working directory for the runtime stage.
 WORKDIR /app
