@@ -19,15 +19,16 @@ RUN mvn clean package -DskipTests
 
 # Stage 2: Create the final runtime image
 # Use a lightweight OpenJDK JRE (Java Runtime Environment) image for the final application.
-# This keeps the final image size small, as it doesn't include build tools.
-FROM openjdk:17-jre-slim
+# 'eclipse-temurin:17-jre-alpine' is a good choice for a small, production-ready image.
+FROM eclipse-temurin:17-jre-alpine
 
 # Set the working directory for the runtime stage.
 WORKDIR /app
 
 # Copy the built JAR file from the 'build' stage to the current stage.
 # The JAR file is typically found in the 'target' directory after a Maven build.
-# We are now explicitly using the JAR name from your .render.yaml's startCommand.
+# Make sure to replace 'FloorPlanManagementSystem-0.0.1-SNAPSHOT.jar' with the actual name
+# of your JAR file if it differs.
 COPY --from=build /app/target/FloorPlanManagementSystem-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the port that your Spring Boot application will listen on.
@@ -35,7 +36,6 @@ COPY --from=build /app/target/FloorPlanManagementSystem-0.0.1-SNAPSHOT.jar app.j
 EXPOSE 8080
 
 # Define the command to run your Spring Boot application when the container starts.
-# This command will start your Spring Boot application using the JAR.
 # Render automatically injects the $PORT environment variable, which Spring Boot
 # will pick up via 'server.port'.
 ENTRYPOINT ["java", "-Dserver.port=$PORT", "-jar", "app.jar"]
